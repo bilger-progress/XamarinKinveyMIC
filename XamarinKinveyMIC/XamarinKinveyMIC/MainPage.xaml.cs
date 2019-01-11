@@ -13,9 +13,6 @@ namespace XamarinKinveyMIC
         private readonly Client KinveyClient;
         private string appKey = "xxx";
         private string appSecret = "xxx";
-        private string userName = "xxx";
-        private string userPassword = "xxx";
-        private string authServiceID = "xxx";
 
         public MainPage()
         {
@@ -39,15 +36,11 @@ namespace XamarinKinveyMIC
             }
         }
 
-        public async void KinveyLoginMIC()
+        public void KinveyLoginMIC()
         {
-            // If there's a User already, please log-out.
-            if (Client.SharedClient.ActiveUser != null)
-            {
-                Client.SharedClient.ActiveUser.Logout();
-            }
-            await User.LoginWithMIC(this.userName, this.userPassword, this.authServiceID, this.KinveyClient);
-            await DisplayAlert("Successfully logged-in!", "Username: " + Client.SharedClient.ActiveUser.UserName, "OK");
+            // Logout in case there's already logged-in User.
+            Client.SharedClient.ActiveUser.Logout();
+            DependencyService.Get<IKinveyMIC>().KinveyLoginMIC();
         }
     }
 }
