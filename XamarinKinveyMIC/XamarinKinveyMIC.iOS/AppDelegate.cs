@@ -41,7 +41,7 @@ namespace XamarinKinveyMIC.iOS
 
         private void AlertUser(User User)
         {
-            Console.WriteLine("User: " + User.Id);
+            Console.WriteLine("User: " + Newtonsoft.Json.JsonConvert.SerializeObject(User.AuthSocialID, Newtonsoft.Json.Formatting.Indented));
         }
 
         private void AlertException(Exception Exception)
