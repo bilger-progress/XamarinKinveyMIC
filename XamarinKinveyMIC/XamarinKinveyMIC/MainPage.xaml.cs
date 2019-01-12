@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Kinvey;
 
@@ -17,7 +13,7 @@ namespace XamarinKinveyMIC
         public MainPage()
         {
             InitializeComponent();
-            Client.Builder Builder = new Client.Builder(this.appKey, this.appSecret).setLogger(Console.WriteLine);
+            Client.Builder Builder = new Client.Builder(this.appKey, this.appSecret);
             this.KinveyClient = Builder.Build();
             this.KinveyPing();
         }
@@ -27,11 +23,10 @@ namespace XamarinKinveyMIC
             try
             {
                 PingResponse PingResponse = await this.KinveyClient.PingAsync();
-                await DisplayAlert("Kinvey Ping Response", "Kinvey Ping Response: " + PingResponse.kinvey, "OK");
+                Console.WriteLine("Kinvey Ping Response: " + PingResponse.kinvey);
             }
             catch (Exception PingException)
             {
-                await DisplayAlert("Kinvey Ping Exception", "Kinvey Ping Exception: Please check logs.", "OK");
                 Console.WriteLine("Kinvey Ping Exception: " + PingException.Message);
             }
         }
@@ -39,7 +34,10 @@ namespace XamarinKinveyMIC
         public void KinveyLoginMIC()
         {
             // Logout in case there's already logged-in User.
-            Client.SharedClient.ActiveUser.Logout();
+            if(Client.SharedClient.ActiveUser != null) 
+            {
+                Client.SharedClient.ActiveUser.Logout();
+            }
             DependencyService.Get<IKinveyMIC>().KinveyLoginMIC();
         }
     }

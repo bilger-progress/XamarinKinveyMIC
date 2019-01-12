@@ -42,19 +42,11 @@ namespace XamarinKinveyMIC.iOS
         private void AlertUser(User User)
         {
             Console.WriteLine("User: " + User.Id);
-            //UIAlertController UserCtrl = UIAlertController.Create("Kinvey MIC", "User: " + User.Id, UIAlertControllerStyle.Alert);
-            //UserCtrl.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            //Window.MakeKeyAndVisible();
-            //this.Window.RootViewController.PresentViewController(UserCtrl, true, null);
         }
 
         private void AlertException(Exception Exception)
         {
             Console.WriteLine("Something went wrong: " + Exception.Message);
-            //UIAlertController ExceptionCtrl = UIAlertController.Create("Kinvey MIC", "Exception: Please check logs.", UIAlertControllerStyle.Alert);
-            //ExceptionCtrl.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            //Window.MakeKeyAndVisible();
-            //this.Window.RootViewController.PresentViewController(ExceptionCtrl, true, null);
         }
 
         public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
